@@ -15,8 +15,12 @@ import com.chatop.estate.dtos.UserDTO;
 import com.chatop.estate.models.User;
 import com.chatop.estate.services.AuthService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
 @RequestMapping("/api/auth")
+@Tag(name = "Authentication", description = "Endpoints for user authentication and management")
 public class AuthController {
 
     private final AuthService authService;
@@ -26,16 +30,19 @@ public class AuthController {
     }
 
     @PostMapping("/register")
+    @Operation(summary = "Register a new user", description = "Registers a new user and returns a JWT token.")
     public ResponseEntity<AuthDTO> register(@RequestBody RegisterDTO request) {
         return ResponseEntity.ok(authService.register(request));
     }
 
     @PostMapping("/login")
+    @Operation(summary = "Login a user", description = "Authenticates a user and returns a JWT token.")
     public ResponseEntity<AuthDTO> login(@RequestBody LoginDTO request) {
         return ResponseEntity.ok(authService.login(request));
     }
 
     @GetMapping("/me")
+    @Operation(summary = "Get current user", description = "Returns the details of the currently authenticated user.")
     public ResponseEntity<UserDTO> me() {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = authService.findUserByEmail(email);
