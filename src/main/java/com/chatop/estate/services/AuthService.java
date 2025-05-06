@@ -29,6 +29,12 @@ public class AuthService {
         this.jwtService = jwtService;
     }
 
+    /**
+     * Create a new user and return a jwt token linked to that new user
+     * 
+     * @param request
+     * @return AuthDTO
+     */
     public AuthDTO register(RegisterDTO request) {
         User user = new User();
         user.setName(request.getName());
@@ -47,12 +53,16 @@ public class AuthService {
         return new AuthDTO(jwt);
     }
 
+    /**
+     * Find a user by his email and check credentials
+     * 	if matching, return a jwt token
+     *  else return Exceptions
+     * 
+     * @param request
+     * @return AuthDTO
+     */
     public AuthDTO login(LoginDTO request) {
-        User user = userRepository.findByEmail(request.getEmail());
-
-        if (user == null) {
-            throw new UsernameNotFoundException("Utilisateur non trouvé");
-        }
+        User user = findUserByEmail(request.getEmail());
         
         if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
             throw new BadCredentialsException("Mot de passe invalide");
@@ -66,6 +76,12 @@ public class AuthService {
         return new UserDTO(user.getId(), user.getName(), user.getEmail(), user.getCreatedAt(), user.getUpdatedAt());
     }
     
+    /**
+     * Find a user by his email and return it
+     * 
+     * @param email
+     * @return user
+     */
     public User findUserByEmail(String email) {
         User user = userRepository.findByEmail(email);
         if (user == null) {
