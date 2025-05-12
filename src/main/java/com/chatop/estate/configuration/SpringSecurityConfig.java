@@ -82,7 +82,8 @@ public class SpringSecurityConfig {
                     "/api/auth/register",
                     "/swagger-ui/**",
                     "/swagger-ui.html",
-                    "/v3/api-docs/**")
+                    "/v3/api-docs/**",
+                    "/uploads/**")
                 .permitAll()
                 .anyRequest().authenticated()
             )

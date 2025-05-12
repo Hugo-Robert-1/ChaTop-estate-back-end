@@ -7,16 +7,26 @@
   {
     "name": "security.jwt.expiration-time",
     "type": "java.lang.String",
-    "description": "A description for 'security.jwt.expiration-time'"
+    "description": "Expiration time for the JWT token"
   },
   {
     "name": "security.jwt.public-key",
     "type": "java.lang.String",
-    "description": "A description for 'security.jwt.public-key'"
+    "description": "Public-key for jwt signing (RSA)"
   },
   {
     "name": "security.jwt.private-key",
     "type": "java.lang.String",
-    "description": "A description for 'security.jwt.private-key'"
+    "description": "Private key for jwt signing (RSA)"
+  },
+  {
+    "name": "file.save.path",
+    "type": "java.lang.String",
+    "description": "Url where the file will be stored"
+  },
+  {
+    "name": "file.base-url",
+    "type": "java.lang.String",
+    "description": "URL for accessing files"
   }
 ]}
