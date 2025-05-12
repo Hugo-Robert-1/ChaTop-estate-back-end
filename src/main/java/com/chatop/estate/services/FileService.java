@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @Service
+@Tag(name = "File Management", description = "Service for managing file uploads")
 public class FileService {
 	
 	@Value("${file.save.path}")
