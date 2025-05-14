@@ -25,6 +25,11 @@ private final MessageRepository messageRepository;
         this.rentalRepository = rentalRepository;
     }
 	
+    /**
+     * Create a new message and save it to the database
+	 * Check if the user and rental exist
+     * @param messageDTO
+     */
 	public void createMessage(MessageDTO messageDTO) {
 		// Vérifier que l'utilisateur existe
 		User user = userRepository.findById(messageDTO.getUser_id())

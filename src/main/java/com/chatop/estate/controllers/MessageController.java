@@ -29,6 +29,7 @@ public class MessageController {
     }
     
 	@PostMapping("")
+	@Operation(summary = "Create a message", description = "Create a message linked to a rental and the user that send it")
     public ResponseEntity<?> create(@RequestBody MessageDTO messageDTO) {
 		messageService.createMessage(messageDTO);
         return ResponseEntity.ok(Map.of("message", "Message send with success"));
