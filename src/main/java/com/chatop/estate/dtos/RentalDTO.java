@@ -1,8 +1,6 @@
 package com.chatop.estate.dtos;
 
 import java.time.LocalDateTime;
-import java.util.Date;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
