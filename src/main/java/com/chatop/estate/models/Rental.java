@@ -13,10 +13,12 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
 @Table(name = "rentals")
+@NoArgsConstructor
 public class Rental {
 
 	@Id
@@ -46,7 +48,7 @@ public class Rental {
     @Column(name="updated_at", nullable = false)
     private LocalDateTime updatedAt;
     
-    @ManyToOne
-    @JoinColumn(name = "owner_id", nullable = false)
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "owner_id", referencedColumnName = "id", nullable = false)
     private User owner;
 }
