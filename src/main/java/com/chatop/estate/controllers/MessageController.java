@@ -2,6 +2,7 @@ package com.chatop.estate.controllers;
 
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,11 +23,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @Tag(name = "Message Management", description = "Endpoints for managing messages")
 public class MessageController {
 
-	private final MessageService messageService;
-	
-	public MessageController(MessageService messageService) {
-        this.messageService = messageService;
-    }
+	@Autowired
+	private MessageService messageService;
     
 	@PostMapping("")
 	@Operation(summary = "Create a message", description = "Create a message linked to a rental and the user that send it")
