@@ -22,13 +22,14 @@ public class FileService {
             directory.mkdirs();
         }
 
-        String filePath = directorySaveFile + System.currentTimeMillis() + image.getOriginalFilename();
+        String newFileName = System.currentTimeMillis() + image.getOriginalFilename();
+        String filePath = directorySaveFile + newFileName ;
         try {
             image.transferTo(new File(filePath));
         } catch (IOException e) {
             throw new RuntimeException("Erreur lors de l'enregistrement de l'image", e);
         }
 
-        return image.getOriginalFilename();
+        return newFileName;
     }
 }
