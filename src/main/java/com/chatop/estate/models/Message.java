@@ -1,8 +1,6 @@
 package com.chatop.estate.models;
 
 import java.time.LocalDateTime;
-import java.util.Date;
-
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -29,6 +27,7 @@ public class Message {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 	
+	@Column(length = 2000)
 	private String message;
 	
 	@CreationTimestamp

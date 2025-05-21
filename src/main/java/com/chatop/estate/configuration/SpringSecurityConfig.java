@@ -24,7 +24,6 @@ import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import com.chatop.estate.filters.JWTFilter;
-import com.chatop.estate.services.CustomUserDetailsService;
 import com.nimbusds.jose.jwk.JWK;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
@@ -41,15 +40,7 @@ public class SpringSecurityConfig {
     private PrivateKey rsaPrivateKey;
 
     @Autowired
-    private CustomUserDetailsService customUserDetailsService;
-
-    @Autowired
     private JWTFilter jwtFilter;
-
-    public SpringSecurityConfig(CustomUserDetailsService customUserDetailsService, JWTFilter jwtFilter) {
-        this.customUserDetailsService = customUserDetailsService;
-        this.jwtFilter = jwtFilter;
-    }
 
     @PostConstruct
     public void loadKeys() throws Exception {
