@@ -1,12 +1,7 @@
 package com.chatop.estate.services;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.security.KeyFactory;
 import java.security.PrivateKey;
 import java.security.PublicKey;
-import java.security.spec.PKCS8EncodedKeySpec;
-import java.security.spec.X509EncodedKeySpec;
 import java.time.Instant;
 import java.util.Date;
 import java.util.function.Function;
@@ -16,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import com.chatop.estate.models.User;
+import com.chatop.estate.utils.KeyUtils;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -27,17 +23,11 @@ public class JWTService {
     private long expirationTime;
 	
 	private PrivateKey getPrivateKey() throws Exception {
-        byte[] keyBytes = Files.readAllBytes(Paths.get("src/main/resources/keys/private.pem"));
-        PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(keyBytes);
-        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-        return keyFactory.generatePrivate(spec);
+		return KeyUtils.loadPrivateKey();
     }
 	
 	private PublicKey getPublicKey() throws Exception {
-        byte[] keyBytes = Files.readAllBytes(Paths.get("src/main/resources/keys/public.pem"));
-        X509EncodedKeySpec spec = new X509EncodedKeySpec(keyBytes);
-        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-        return keyFactory.generatePublic(spec);
+		return KeyUtils.loadPublicKey();
     }
 
 	public String generateToken(String username) {

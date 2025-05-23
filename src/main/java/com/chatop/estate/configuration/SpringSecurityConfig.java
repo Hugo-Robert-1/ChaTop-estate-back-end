@@ -1,13 +1,8 @@
 package com.chatop.estate.configuration;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.security.KeyFactory;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.interfaces.RSAPublicKey;
-import java.security.spec.PKCS8EncodedKeySpec;
-import java.security.spec.X509EncodedKeySpec;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,6 +19,7 @@ import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import com.chatop.estate.filters.JWTFilter;
+import com.chatop.estate.utils.KeyUtils;
 import com.nimbusds.jose.jwk.JWK;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
@@ -44,22 +40,8 @@ public class SpringSecurityConfig {
 
     @PostConstruct
     public void loadKeys() throws Exception {
-        rsaPublicKey = readPublicKey("public.pem");
-        rsaPrivateKey = readPrivateKey("private.pem");
-    }
-
-    private PublicKey readPublicKey(String path) throws Exception {
-    	byte[] keyBytes = Files.readAllBytes(Paths.get("src/main/resources/keys/public.pem"));
-        X509EncodedKeySpec spec = new X509EncodedKeySpec(keyBytes);
-        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-        return keyFactory.generatePublic(spec);
-    }
-
-    private PrivateKey readPrivateKey(String path) throws Exception {
-    	byte[] keyBytes = Files.readAllBytes(Paths.get("src/main/resources/keys/private.pem"));
-        PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(keyBytes);
-        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-        return keyFactory.generatePrivate(spec);
+    	rsaPublicKey = KeyUtils.loadPublicKey();
+        rsaPrivateKey = KeyUtils.loadPrivateKey();
     }
 
     @Bean
