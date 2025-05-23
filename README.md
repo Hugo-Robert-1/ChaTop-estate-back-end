@@ -15,7 +15,7 @@ API de l'application Estate, permettant de mettre en relation des utilisateurs p
 
 
 ## Installer une base de données MySQL en local
- 1. **Installer MySQL** : Assurez-vous que MySQL est installé sur votre machine. Si ce n'est pas le cas, vous pouvez le télécharger et l'installer via [MySQL Downloads](https://dev.mysql.com/downloads/) en suivant le programme d'installation.
+ 1. **Installer MySQL** : Assurez-vous que MySQL est installé sur votre machine. Si ce n'est pas le cas, vous pouvez le télécharger et l'installer via [MySQL Downloads](https://dev.mysql.com/downloads/installer/) en suivant le programme d'installation.
 
  2. **Créer la base de données** : Connectez-vous à MySQL et créez la base de données `chatop_estate`.
 
