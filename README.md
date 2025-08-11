@@ -11,11 +11,11 @@ API de l'application Estate, permettant de mettre en relation des utilisateurs p
   ```cd ChaTop-estate-back-end```
  ### 3. Installer les dépendances du projet :
   - Via Windows, powershell : `` .\mvnw clean install ``
-  - Via Linux/MacOs, bash ;  `` ./mvnw clean install ``
+  - Via Linux/MacOs, bash ;  `` mvnw clean install ``
 
 
 ## Installer une base de données MySQL en local
- 1. **Installer MySQL** : Assurez-vous que MySQL est installé sur votre machine. Si ce n'est pas le cas, vous pouvez le télécharger et l'installer via [MySQL Downloads](https://dev.mysql.com/downloads/) en suivant le programme d'installation.
+ 1. **Installer MySQL** : Assurez-vous que MySQL est installé sur votre machine. Si ce n'est pas le cas, vous pouvez le télécharger et l'installer via [MySQL Downloads](https://dev.mysql.com/downloads/installer/) en suivant le programme d'installation.
 
  2. **Créer la base de données** : Connectez-vous à MySQL et créez la base de données `chatop_estate`.
 
@@ -39,7 +39,7 @@ La mise en place de ces variables peuvent être faites de différentes manières
  - Via votre éditeur de code (Eclipse ou Spring tool suite par exemple), il est possible de définir directement les variables d'environnement qui seront utilisées lorsqu'un projet est lancé. Veuillez vous rapprocher de la documentation de votre éditeur pour savoir comment les mettre en place.
  - Pour un usage en production, utiliser les variables d'environnement système. Pour cela, créer un fichier .env à la racine du projet, contenant les variables d'environnement à définir. En fonction de votre système d'exploitation, utiliser le script suivant pour charger les variables :
     - Sous Windows PowerShell :
-      ```powershell Get-Content .env | Where-Object { $_ -match '=' -and $_ -notmatch '^\s*#' -and $_.Trim() -ne '' } | ForEach-Object { $name, $value = $_ -split '=', 2 [System.Environment]::SetEnvironmentVariable($name.Trim(), $value.Trim(), "Process") } ```
+      ```Get-Content .env | Where-Object { $_ -match '=' -and $_ -notmatch '^\s*#' -and $_.Trim() -ne '' } | ForEach-Object { $name, $value = $_ -split '=', 2; [System.Environment]::SetEnvironmentVariable($name.Trim(), $value.Trim(), "Process") }```
 
     - Sous Linux/macOS :
      ``export $(cat .env | xargs)``
