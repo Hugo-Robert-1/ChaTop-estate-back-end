@@ -27,7 +27,7 @@ private final MessageRepository messageRepository;
 	
     /**
      * Create a new message and save it to the database
-	 * Check if the user and rental exist
+     * Check if the user and rental exist
      * @param messageDTO
      */
 	public void createMessage(MessageDTO messageDTO) {

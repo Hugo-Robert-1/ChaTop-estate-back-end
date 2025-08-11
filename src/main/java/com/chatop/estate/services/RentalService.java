@@ -25,15 +25,37 @@ public class RentalService {
         this.fileService = fileService;
     }
 
+    /**
+     * Get all rentals
+     * 
+     * @return List<Rental> List of all rentals
+     */
     public List<Rental> getAllRentals() {
         return rentalRepository.findAll();
     }
 
+    /** 
+     * Get a rental via its ID
+     * 
+     * @param id The ID of the rental to retrieve
+     * @return Rental The rental corresponding to the ID
+    */
     public Rental getRentalById(Long id) {
         return rentalRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Rental non trouvé avec l'ID : " + id));
     }
 
+    /**
+     * Create a new rental
+     * 
+     * @param name Name of the rental
+     * @param surface Surface area of the rental
+     * @param price Price of the rental
+     * @param description Description of the rental
+     * @param image Image of the rental
+     * 
+     * @return Rental
+     */
     public Rental createRental(String name, Double surface, Double price, String description, MultipartFile image) {
     	String curentUserEmail = SecurityContextHolder.getContext().getAuthentication().getName();
     	User currentUser = userRepository.findByEmail(curentUserEmail);
@@ -55,6 +77,17 @@ public class RentalService {
         return rentalRepository.save(rental);
     }
 
+    /**
+     * Update a rental by his ID
+     * 
+     * @param id ID of the rental to update
+     * @param name Name of the rental
+     * @param surface Surface area of the rental
+     * @param price Price of the rental
+     * @param description Description of the rental
+     * 
+     * @return Rental
+     */
     public Rental updateRental(Long id, String name, Double surface, Double price, String description) {
         Rental rental = rentalRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Rental non trouvé avec l'ID : " + id));
